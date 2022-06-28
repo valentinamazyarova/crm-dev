@@ -1,0 +1,85 @@
+{
+  "applications": [
+    {
+      "name": "Дарья Мороз",
+      "phone": "+123456789",
+      "email": "Dariiii@mail.com",
+      "course": "course-php",
+      "status": "new",
+      "date": "27.05.2022",
+      "id": 2
+    },
+    {
+      "name": "Iren",
+      "phone": "8913222288",
+      "email": "iren_iren@mail.ru",
+      "course": "course-vue",
+      "status": "new",
+      "date": "27.05.2022",
+      "id": 3
+    },
+    {
+      "name": "Алекс Гросс",
+      "phone": "+123456789",
+      "email": "gross@mail.com",
+      "course": "course-html",
+      "status": "new",
+      "date": "27.05.2022",
+      "id": 4
+    },
+    {
+      "name": "Милана",
+      "phone": "8963953788",
+      "email": "Milana@mail.ru",
+      "course": "course-wordpress",
+      "status": "complete",
+      "date": "27.05.2022",
+      "id": 5
+    },
+    {
+      "name": "Iren",
+      "phone": "8913222288",
+      "email": "iren_iren@mail.ru",
+      "course": "course-vue",
+      "status": "complete",
+      "date": "27.05.2022",
+      "id": 6
+    },
+    {
+      "name": "Алекс ",
+      "phone": "+123456789",
+      "email": "gross@mail.com",
+      "course": "course-html",
+      "status": "inwork",
+      "date": "27.05.2022",
+      "id": 7
+    },
+    {
+      "name": "Iren",
+      "phone": "8913222288",
+      "email": "iren_iren@mail.ru",
+      "course": "course-vue",
+      "status": "new",
+      "date": "27.05.2022",
+      "id": 8
+    },
+    {
+      "name": "Алекс Гросс",
+      "phone": "+123456789",
+      "email": "gross@mail.com",
+      "course": "course-html",
+      "status": "complete",
+      "date": "27.05.2022",
+      "id": 10
+    },
+    {
+      "name": "Иван Иванов",
+      "phone": "8913957688",
+      "email": "ivan@mail.ru",
+      "course": "course-js",
+      "status": "inwork",
+      "date": "27.05.2022",
+      "id": 11
+    }
+  ]
+}
