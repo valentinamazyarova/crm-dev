@@ -5,11 +5,6 @@ const useFetchFromEdit = (url) => {
     const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
-    const [email, setEmail] = useState("");
-    const [course, setСourse] = useState("");
-    const [status, setStatus] = useState("");
 
     useEffect(() => {
         const abortCont = new AbortController()
@@ -23,11 +18,6 @@ const useFetchFromEdit = (url) => {
             setData(data)
             setLoading(false)
             setError(null)
-            setName(data.name)
-            setPhone(data.phone)
-            setEmail(data.email)
-            setСourse(data.course)
-            setStatus(data.status)
 
         }).catch((err) => {
             if (err.name === 'AbortError') {
@@ -45,7 +35,7 @@ const useFetchFromEdit = (url) => {
 
     },[])
 
-    return { data, isLoading, error, setError, name, phone, course, email, status, setName, setEmail, setPhone, setStatus, setСourse}
+    return { data, isLoading, error, setData }
 }
 
 export default useFetchFromEdit;

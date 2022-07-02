@@ -2,23 +2,25 @@ import { useParams } from 'react-router-dom';
 import useFetchFromEdit from './useFetchForEdit';
 import { useNavigate } from 'react-router-dom';
 import { serverPath } from '../../helpers/variables';
+import { useState } from 'react';
 
 const Edit = () => {
 
     const { id } = useParams();
-    const { data: application, isLoading, error, setError, name,  phone, course, email, status, setName, setEmail, setPhone, setStatus, setСourse } = useFetchFromEdit(serverPath + "/" + id);
+    const { data: application, isLoading, error, setData } = useFetchFromEdit(serverPath + "/" + id);
     const navigate = useNavigate();
+    const [errorUpdate, setErrorUpdate] = useState(null);
 
     const saveСhanges = (e) => {
         e.preventDefault()
 
         const changeData = {
             ...application,
-            name,
-            phone,
-            email,
-            course,
-            status
+            name: application.name,
+            phone: application.phone,
+            email: application.email,
+            course: application.course,
+            status: application.status
         }
 
         fetch(`${serverPath}/${id}`, {
@@ -31,7 +33,7 @@ const Edit = () => {
             }
             navigate('/table')
         }).catch((err) => {
-            setError(err.message)
+            setErrorUpdate(err.message)
         })
     }
 
@@ -47,6 +49,7 @@ const Edit = () => {
     return (
         <div className="form-wrapper">
             {error && <h3>{error}</h3>}
+            {errorUpdate && <h3>{errorUpdate}</h3>}
             {isLoading && <h1>Loading...</h1>}
             {application && (<div className="container-fluid">
                 {/* <!-- row --> */}
@@ -88,7 +91,15 @@ const Edit = () => {
                                             <strong>Продукт:</strong>
                                         </div>
                                         <div className="col">
-                                            <select onChange={(e) => { setСourse(e.target.value) }} id="product" name="product" className="custom-select" value={course}>
+                                            <select onChange={(e) => {
+                                                setData((prev) => {
+                                                    return {
+                                                        ...prev,
+                                                        course: e.target.value
+                                                    }
+                                                })
+                                            }}
+                                                id="product" name="product" className="custom-select" value={application.course}>
                                                 <option value="course-html">Курс по верстке</option>
                                                 <option value="course-js">Курс по JavaScript</option>
                                                 <option value="course-vue">Курс по VUE JS</option>
@@ -106,10 +117,17 @@ const Edit = () => {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                value={name}
+                                                value={application.name}
                                                 id="name"
                                                 name="name"
-                                                onChange={(e) => { setName(e.target.value) }}
+                                                onChange={(e) => {
+                                                    setData((prev) => {
+                                                        return {
+                                                            ...prev,
+                                                            name: e.target.value
+                                                        }
+                                                    })
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -122,10 +140,17 @@ const Edit = () => {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                value={email}
+                                                value={application.email}
                                                 id="email"
                                                 name="email"
-                                                onChange={(e) => { setEmail(e.target.value) }}
+                                                onChange={(e) => {
+                                                    setData((prev) => {
+                                                        return {
+                                                            ...prev,
+                                                            email: e.target.value
+                                                        }
+                                                    })
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -138,10 +163,17 @@ const Edit = () => {
                                             <input
                                                 type="text"
                                                 className="form-control"
-                                                value={phone}
+                                                value={application.phone}
                                                 id="phone"
                                                 name="phone"
-                                                onChange={(e) => { setPhone(e.target.value) }}
+                                                onChange={(e) => {
+                                                    setData((prev) => {
+                                                        return {
+                                                            ...prev,
+                                                            phone: e.target.value
+                                                        }
+                                                    })
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -151,7 +183,15 @@ const Edit = () => {
                                             <strong>Статус заявки:</strong>
                                         </div>
                                         <div className="col">
-                                            <select className="custom-select" id="status" name="status" value={status} onChange={(e) => { setStatus(e.target.value) }}>
+                                            <select className="custom-select" id="status" name="status" value={application.status}
+                                                onChange={(e) => {
+                                                    setData((prev) => {
+                                                        return {
+                                                            ...prev,
+                                                            status: e.target.value
+                                                        }
+                                                    })
+                                                }}>
                                                 <option >Выберите...</option>
                                                 <option value="new">Новая</option>
                                                 <option value="inwork">В работе</option>
@@ -165,7 +205,7 @@ const Edit = () => {
                             <div className="row justify-content-between">
                                 <div className="col text-right">
                                     <button type='submit' className="btn btn-primary mr-15" >Сохранить изменения</button>
-                                    <button type='submit' className="btn btn-primary " onClick={()=>{deleteApplication()}} >Удалить заявку</button>
+                                    <button type='submit' className="btn btn-primary " onClick={() => { deleteApplication() }} >Удалить заявку</button>
                                 </div>
                             </div>
                         </form>
